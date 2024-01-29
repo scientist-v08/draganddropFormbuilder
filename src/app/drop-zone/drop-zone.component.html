@@ -1,0 +1,17 @@
+<div 
+    class="drop-zone" 
+    (dragover)="dragOver($event)"
+    (drop)="onDrop($event)"
+>
+    <ng-container *ngIf="droppedItem.length === 0">Drop Zone</ng-container>
+    <ng-container *ngIf="droppedItem.length !== 0">
+        <form>
+            <div *ngFor="let item of droppedItem" class="dropped-item border p-3 my-3">
+                <ng-container *ngIf="item.type==='text' || item.type==='email' || item.type==='password' || item.type==='number' || item.type==='date'">   
+                    <label class="form-label">{{item.label}}</label>
+                    <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">    
+                </ng-container>
+            </div>
+        </form>
+    </ng-container>
+</div>

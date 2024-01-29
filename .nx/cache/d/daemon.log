@@ -1,0 +1,378 @@
+[NX Daemon Server] - 2024-01-28T06:51:03.975Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T06:51:03.978Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T06:51:03.980Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T06:51:03.981Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T06:51:03.985Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T06:51:04.073Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T06:51:04.073Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T06:51:04.073Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T06:51:04.122Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T06:51:04.124Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T06:51:28.007Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T06:51:28.009Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T06:51:28.010Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T06:51:28.011Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T06:51:28.012Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T06:51:28.014Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T06:51:28.015Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T06:51:28.015Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T06:51:28.015Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T06:51:28.043Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T06:51:28.045Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T07:33:21.018Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T07:33:21.020Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T07:33:21.022Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T07:33:21.023Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T07:33:21.025Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T07:33:21.027Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T07:33:21.084Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T07:33:21.084Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T07:33:21.084Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T07:33:21.133Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T07:33:21.135Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:55:13.480Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:55:13.482Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:55:13.484Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:55:13.485Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:55:13.488Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:55:13.533Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:55:13.533Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:55:13.534Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:55:13.568Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:55:13.569Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:55:14.182Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:55:14.184Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:55:14.190Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:55:14.190Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:55:14.191Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:55:14.192Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:55:14.194Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:55:14.194Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:55:14.194Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:55:14.229Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:55:14.230Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:56:50.097Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:56:50.098Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:56:50.099Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:56:50.100Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:56:50.102Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:56:50.151Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:56:50.151Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:56:50.151Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:56:50.184Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:56:50.185Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:56:50.743Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:56:50.746Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:56:50.752Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:56:50.752Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:56:50.754Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:56:50.755Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:56:50.756Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:56:50.756Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:56:50.756Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:56:50.791Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:56:50.793Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:57:20.274Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:57:20.276Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:57:20.281Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:20.282Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:57:20.284Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:57:20.285Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:57:20.285Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:20.285Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:20.319Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:57:20.321Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:57:20.861Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:57:20.863Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:57:20.865Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:20.865Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:57:20.867Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:20.868Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:57:20.869Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:57:20.869Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:20.869Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:20.908Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:57:20.910Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:57:56.820Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:57:56.822Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:57:56.828Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:56.828Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:57:56.830Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:57:56.831Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:57:56.832Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:56.832Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:56.867Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:57:56.869Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-28T12:57:57.469Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-28T12:57:57.471Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-28T12:57:57.475Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:57.476Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-28T12:57:57.477Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-28T12:57:57.478Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-28T12:57:57.479Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-28T12:57:57.479Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:57.479Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-28T12:57:57.528Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-28T12:57:57.530Z - Done responding to the client null
+[NX Daemon Server] - 2024-01-29T04:11:27.913Z - Started listening on: /tmp/93c4b53ee336b67be17c/d.sock
+[NX Daemon Server] - 2024-01-29T04:11:27.916Z - [WATCHER]: Subscribed to changes within: /home/scientist/workspaces/angular/formbuilder (native)
+[NX Daemon Server] - 2024-01-29T04:11:27.924Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-01-29T04:11:27.925Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-01-29T04:11:27.928Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-01-29T04:11:28.056Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-01-29T04:11:28.056Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-29T04:11:28.056Z - [REQUEST]: 
+[NX Daemon Server] - 2024-01-29T04:11:28.117Z - [REQUEST]: Responding to the client with an error. Error when preparing serialized project graph. The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+Error: The following projects are defined in multiple locations:
+- formbuilder: 
+  - .
+  - 
+
+To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
+    at readProjectConfigurationsFromRootMap (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:218:15)
+    at /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:188:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createProjectConfigurations (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/project-graph/utils/retrieve-workspace-files.js:89:62)
+    at async processFilesAndCreateAndSerializeProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:140:28)
+    at async getCachedSerializedProjectGraphPromise (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:43:16)
+    at async handleRequestProjectGraph (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/handle-request-project-graph.js:12:24)
+    at async handleResult (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:110:16)
+    at async handleMessage (/home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:81:9)
+    at async /home/scientist/workspaces/angular/formbuilder/node_modules/nx/src/daemon/server/server.js:45:9
+[NX Daemon Server] - 2024-01-29T04:11:28.119Z - Done responding to the client null
