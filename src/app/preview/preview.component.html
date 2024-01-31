@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Preview</h2>
+<mat-dialog-content>
+    <form #myForm="ngForm" [formGroup]="dynamicForm" class="row g-3">
+    <ng-container *ngFor="let control of form">
+        <ng-container *ngIf="['text','email','password','number','date'].includes(control.type)">
+        <div [class]="control.class">
+            <label class="form-label">{{control.label}}</label>
+            <input [placeholder]="control.placeholder" formControlName="{{control.name}}" class="form-control" [type]="control.type">
+            <small
+            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+            class="text-danger"
+            >{{getValidationError(control)}}</small>
+        </div>
+        </ng-container>
+        <ng-container *ngIf="control.type === 'select'">
+        <div [class]="control.class">
+            <label class="form-label">{{control.label}}</label>
+            <select formControlName="{{control.name}}" class="form-select" aria-label="Default select example">
+            <option selected value="">Choose</option>
+            <ng-container *ngFor="let opt of control.options">
+                <option value="{{opt.value}}">{{opt.value}}</option>
+            </ng-container>
+            </select>
+            <small
+            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+            class="text-danger"
+            >{{getValidationError(control)}}</small>
+        </div>
+        </ng-container>
+        <ng-container *ngIf="control.type === 'radio'">
+        <div [class]="control.class">
+            <label>{{control?.label}}</label>
+            <div class="form-check" *ngFor="let row of control.radioOptions">
+            <input formControlName="{{control?.name}}" [value]="row" class="form-check-input" type="radio">
+            <label [for]="control?.name" class="form-check-label">{{row}}</label>
+            </div>
+            <small
+            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+            class="text-danger"
+            >{{getValidationError(control)}}</small>
+        </div>
+        </ng-container>
+    </ng-container>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary mx-2">Submit</button>
+    <button (click)="onReset()" type="submit" class="btn btn-primary mx-2">Reset</button>
+</mat-dialog-actions>

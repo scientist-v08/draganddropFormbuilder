@@ -35,10 +35,10 @@ export class DropZoneComponent{
                 data:{class:this.class}
             });
             dialogClosed.afterClosed()
-                        .pipe(take(1))
-                        .subscribe(result=>{
-                            if(result===1) this.droppedItem=this.getJson.getAllFields();
-                        })
+                .pipe(take(1))
+                .subscribe(result=>{
+                    if(result===1) this.droppedItem=this.getJson.getAllFields();
+                })
         }
     }
 }

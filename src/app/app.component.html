@@ -1,10 +1,17 @@
-<div class="container scroll">
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <button class="btn btn-secondary" (click)="onClickPreview()">Preview</button>
+    </div>
+  </div>
+</div>
+<div class="container scroll mb-3">
   <div class="row mt-2">
     <fb-draggable-item
       *ngFor="let item of draggableItems"
       [label]="item.label"
       [type]="item.type"
-      class="col-md-2"  
+      class="col-md-2"
     ></fb-draggable-item>
   </div>
   <div class="row mt-2">
@@ -13,21 +20,3 @@
     </div>
   </div>
 </div>
-<!-- <div>
-  <label for="numEntries">Select Number of Entries:</label>
-  <select id="numEntries" [(ngModel)]="numEntries" (change)="addEntries()">
-    <option value="1">1</option>
-    <option value="2">2</option>
-  </select>
-</div>
-
-<form>
-  <div *ngFor="let entry of entries; let i = index" class="form-group">
-    <label for="name{{i}}">Name</label>
-    <input type="text" class="form-control" id="name{{i}}" name="name{{i}}" [(ngModel)]="entry.name" required>
-
-    <label for="email{{i}}">Email</label>
-    <input type="email" class="form-control" id="email{{i}}" name="email{{i}}" [(ngModel)]="entry.email" required>
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-</form> -->
