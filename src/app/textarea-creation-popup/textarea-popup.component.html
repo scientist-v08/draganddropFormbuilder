@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Define the textarea field</h2>
+<mat-dialog-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group">
+                        <label for="label">Label of the field</label>
+                        <input type="text" id="label" [(ngModel)]="label" class="form-control" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="value">Initial value (if any)</label>
+                        <input type="text" id="value" [(ngModel)]="value" class="form-control" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="placeholder">Placeholder (if any)</label>
+                        <input type="text" id="placeholder" [(ngModel)]="placeholder" class="form-control" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="addValOrNot">Do you want to add validations?</label>
+                        <div class="form-check">
+                            <input [(ngModel)]="ValidationAdd" value="Yes" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
+                            <label for="yesCheck" class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input [(ngModel)]="ValidationAdd" value="No" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
+                            <label for="noCheck" class="form-check-label">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="showNumOfVals">
+                        <label for="numOfValidators">Select number of Validators to be added</label>
+                        <select [(ngModel)]="numberOfValidation" class="form-select" (change)="addEntries()" [ngModelOptions]="{standalone: true}">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                        </select>
+                    </div>
+                    <ng-container *ngIf="validatorSelector">
+                        <div class="form-group" *ngFor="let item of validators;let k=index;">
+                            <label for="typeOfValidator">{{k+1}}:Which type of Validator do you want to add?</label>
+                            <select [(ngModel)]="item.validationName" class="form-select" [ngModelOptions]="{standalone: true}">
+                                <option value="required">Required</option>
+                                <option value="maxlength">Maximum Length</option>
+                                <option value="minlength">Minimum Length</option>
+                            </select>
+                            <ng-container *ngIf="item.validationName !== ''">
+                                <ng-container *ngIf="item.validationName==='maxlength'">
+                                    For {{k+1}}:
+                                    <label>Enter maximum length:</label>
+                                    <input type="number" class="form-control" [(ngModel)]="item.maxLength" [ngModelOptions]="{standalone: true}">
+                                </ng-container>
+                                <ng-container *ngIf="item.validationName==='minlength'">
+                                    For {{k+1}}:
+                                    <label>Enter minimum length:</label>
+                                    <input type="number" class="form-control" [(ngModel)]="item.minLength" [ngModelOptions]="{standalone: true}">
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>

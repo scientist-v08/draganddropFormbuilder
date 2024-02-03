@@ -5,6 +5,7 @@ import { InputCreationPopupComponent } from "../input-field-creation-popup/input
 import { take } from "rxjs";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { FormJsonCreator } from "../services/formjsoncreator.service";
+import { TextareaPopupComponent } from "../textarea-creation-popup/textarea-popup.component";
 
 @Component({
     standalone:true,
@@ -31,7 +32,18 @@ export class DropZoneComponent{
         this.dropItem.push(label);
         if(label == 'Input Field'){
             const dialogClosed = this.dialog.open(InputCreationPopupComponent,{
-                width:'45%',
+                width:'25%',
+                data:{class:this.class}
+            });
+            dialogClosed.afterClosed()
+                .pipe(take(1))
+                .subscribe(result=>{
+                    if(result===1) this.droppedItem=this.getJson.getAllFields();
+                })
+        }
+        else if(label === 'Text Area'){
+            const dialogClosed = this.dialog.open(TextareaPopupComponent,{
+                width:'25%',
                 data:{class:this.class}
             });
             dialogClosed.afterClosed()

@@ -28,22 +28,32 @@
         </div>
         </ng-container>
         <ng-container *ngIf="control.type === 'radio'">
-        <div [class]="control.class">
-            <label>{{control?.label}}</label>
-            <div class="form-check" *ngFor="let row of control.radioOptions">
-            <input formControlName="{{control?.name}}" [value]="row" class="form-check-input" type="radio">
-            <label [for]="control?.name" class="form-check-label">{{row}}</label>
+            <div [class]="control.class">
+                <label>{{control?.label}}</label>
+                <div class="form-check" *ngFor="let row of control.radioOptions">
+                <input formControlName="{{control?.name}}" [value]="row" class="form-check-input" type="radio">
+                <label [for]="control?.name" class="form-check-label">{{row}}</label>
+                </div>
+                <small
+                *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                class="text-danger"
+                >{{getValidationError(control)}}</small>
             </div>
-            <small
-            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
-            class="text-danger"
-            >{{getValidationError(control)}}</small>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="control.type==='textarea'">
+            <div [class]="control.class">
+                <label>{{control?.label}}</label>
+                <textarea formControlName="{{control.name}}" class="form-control" [placeholder]="control.placeholder"></textarea>
+                <small
+                *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                class="text-danger"
+                >{{getValidationError(control)}}</small>
+            </div>
         </ng-container>
     </ng-container>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button (click)="onSubmit()" type="submit" class="btn btn-primary mx-2">Submit</button>
+    <button [disabled]="dynamicForm.invalid" (click)="onSubmit()" type="submit" class="btn btn-primary mx-2">Submit</button>
     <button (click)="onReset()" type="submit" class="btn btn-primary mx-2">Reset</button>
 </mat-dialog-actions>

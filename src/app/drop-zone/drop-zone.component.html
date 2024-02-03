@@ -7,9 +7,14 @@
     <ng-container *ngIf="droppedItem.length !== 0">
         <form>
             <div *ngFor="let item of droppedItem" class="dropped-item border p-3 my-3">
-                <ng-container *ngIf="item.type==='text' || item.type==='email' || item.type==='password' || item.type==='number' || item.type==='date'">   
-                    <label class="form-label">{{item.label}}</label>
+                <label class="form-label">{{item.label}}</label>
+                <ng-container 
+                    *ngIf="item.type==='text' || item.type==='email' || item.type==='password' || 
+                    item.type==='number' || item.type==='date'">   
                     <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">    
+                </ng-container>
+                <ng-container *ngIf="item.type==='textarea'">
+                    <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
                 </ng-container>
             </div>
         </form>
