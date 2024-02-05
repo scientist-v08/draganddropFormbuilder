@@ -16,6 +16,14 @@
                 <ng-container *ngIf="item.type==='textarea'">
                     <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
                 </ng-container>
+                <ng-container *ngIf="item.type === 'select'">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="">Choose</option>
+                        <ng-container *ngFor="let opt of item.options">
+                            <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
+                        </ng-container>
+                    </select>
+                </ng-container>
             </div>
         </form>
     </ng-container>

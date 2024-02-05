@@ -16,10 +16,10 @@
         <div [class]="control.class">
             <label class="form-label">{{control.label}}</label>
             <select formControlName="{{control.name}}" class="form-select" aria-label="Default select example">
-            <option selected value="">Choose</option>
-            <ng-container *ngFor="let opt of control.options">
-                <option value="{{opt.value}}">{{opt.value}}</option>
-            </ng-container>
+                <option selected value="">Choose</option>
+                <ng-container *ngFor="let opt of control.options">
+                    <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
+                </ng-container>
             </select>
             <small
             *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
