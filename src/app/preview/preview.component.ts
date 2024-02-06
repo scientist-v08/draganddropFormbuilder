@@ -2,9 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { ValidatorInterface } from "../interfaces/validator.interface";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { CheckboxOptionsInterface } from "../interfaces/checkbox.interface";
 
 @Component({
     standalone:true,
@@ -24,19 +25,30 @@ export class Preview{
     public ngOnInit():void{
         let formGroup: any = {};
         this.form.forEach((control:FormcontrolInterface)=>{
-            let controlValidators: any = []
+            let controlValidators: any = [];
             if(control.validators){
-            control.validators.forEach((val:ValidatorInterface)=>{
-                if(val.validationName==='required') controlValidators.push(Validators.required);
-                if(val.validationName==='email') controlValidators.push(Validators.email);
-                if(val.validationName==='maxlength') controlValidators.push(Validators.maxLength(val.maxLength as number));
-                if(val.validationName==='minlength') controlValidators.push(Validators.minLength(val.minLength as number));
-                if(val.validationName==='pattern') controlValidators.push(Validators.pattern(val.pattern as string));
-            })
+                control.validators.forEach((val:ValidatorInterface)=>{
+                    if(val.validationName==='required') controlValidators.push(Validators.required);
+                    if(val.validationName==='email') controlValidators.push(Validators.email);
+                    if(val.validationName==='maxlength') controlValidators.push(Validators.maxLength(val.maxLength as number));
+                    if(val.validationName==='minlength') controlValidators.push(Validators.minLength(val.minLength as number));
+                    if(val.validationName==='pattern') controlValidators.push(Validators.pattern(val.pattern as string));
+                })
             }
-            formGroup[control.name] = [control.value ? control.value : '',controlValidators];
+            if(control.type !== 'checkbox')formGroup[control.name] = new FormControl(control.value ? control.value : '',controlValidators);
+            else if(control.type === 'checkbox'){
+                formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[],controlValidators);
+            }
         });
         this.dynamicForm=this.fb.group(formGroup);
+    }
+
+    private createCheckboxForm(options:CheckboxOptionsInterface[],validation:any) {
+        const group : any = {};
+        options.forEach(option=>{
+            group[option.value] = new FormControl(false);
+        });
+        return this.fb.group(group,validation);
     }
 
     onSubmit():void{
@@ -52,9 +64,9 @@ export class Preview{
         const myFormControl = this.dynamicForm.get(control.name);
         let errorMessage:string=''
         control.validators?.forEach((val)=>{
-        if(myFormControl?.hasError(val.validationName as string)){
-        errorMessage=val.message as string;
-        }
+            if(myFormControl?.hasError(val.validationName as string)){
+                errorMessage=val.message as string;
+            }
         });
         return errorMessage;
     }

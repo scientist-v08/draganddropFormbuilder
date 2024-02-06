@@ -1,3 +1,4 @@
+import { CheckboxOptionsInterface } from "./checkbox.interface";
 import { OptionsInterface } from "./options.interface";
 import { ValidatorInterface } from "./validator.interface";
 
@@ -10,5 +11,6 @@ export interface FormcontrolInterface {
     type: string
     options?: OptionsInterface[]
     radioOptions?:string[]
+    checkboxOptions?:CheckboxOptionsInterface[]
     validators?: ValidatorInterface[]
 }

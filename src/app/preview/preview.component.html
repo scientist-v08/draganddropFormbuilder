@@ -29,7 +29,7 @@
         </ng-container>
         <ng-container *ngIf="control.type === 'radio'">
             <div [class]="control.class">
-                <label>{{control?.label}}</label>
+                <label>{{control.label}}</label>
                 <div class="form-check" *ngFor="let row of control.radioOptions">
                     <input formControlName="{{control?.name}}" [value]="row" class="form-check-input" type="radio">
                     <label [for]="control?.name" class="form-check-label">{{row}}</label>
@@ -42,8 +42,23 @@
         </ng-container>
         <ng-container *ngIf="control.type==='textarea'">
             <div [class]="control.class">
-                <label>{{control?.label}}</label>
+                <label>{{control.label}}</label>
                 <textarea formControlName="{{control.name}}" class="form-control" [placeholder]="control.placeholder"></textarea>
+                <small
+                *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                class="text-danger"
+                >{{getValidationError(control)}}</small>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="control.type==='checkbox'">
+            <div [class]="control.class" [formGroupName]="control.name">
+                <label>{{control.label}}</label>
+                <ng-container *ngFor="let option of control.checkboxOptions">
+                    <div class="form-check">
+                        <input [formControlName]="option.value" class="form-check-input" type="checkbox" [value]="option.value">
+                        <label>{{option.label}}</label>
+                    </div>
+                </ng-container>
                 <small
                 *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
                 class="text-danger"

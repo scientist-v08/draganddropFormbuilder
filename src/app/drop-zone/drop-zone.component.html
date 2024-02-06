@@ -30,6 +30,14 @@
                         <label [for]="item?.name" class="form-check-label">{{row}}</label>
                     </div>
                 </ng-container>
+				<ng-container *ngIf="item.type==='checkbox'">
+            <ng-container *ngFor="let option of item.checkboxOptions">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="option.value">
+                    <label>{{option.label}}</label>
+                </div>
+            </ng-container>
+				</ng-container>
             </div>
         </form>
     </ng-container>

@@ -8,6 +8,7 @@ import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { TextareaPopupComponent } from "../textarea-creation-popup/textarea-popup.component";
 import { SelectBoxCreationPopupComponent } from "../selectBox-creation-popup/selectBox-creation.component";
 import { RadioButtonCreationPopup } from "../radio-button-creation-popup/radio-button-creation-popup.component";
+import { CheckboxCreationPopup } from "../checkbox-creation-popup/checkbox-creation-popup.component";
 
 @Component({
     standalone:true,
@@ -67,6 +68,17 @@ export class DropZoneComponent{
         }
         else if(label === 'Radio Button'){
             const dialogClosed = this.dialog.open(RadioButtonCreationPopup,{
+                width:'25%',
+                data:{class:this.class}
+            });
+            dialogClosed.afterClosed()
+                .pipe(take(1))
+                .subscribe(result=>{
+                    if(result===1) this.droppedItem=this.getJson.getAllFields();
+                });
+        }
+        else if(label === 'Check Box'){
+            const dialogClosed = this.dialog.open(CheckboxCreationPopup,{
                 width:'25%',
                 data:{class:this.class}
             });
