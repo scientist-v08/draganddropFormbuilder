@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Define the select box field</h2>
+<h2 mat-dialog-title>Define the radio button field</h2>
 <mat-dialog-content>
     <div class="container-fluid">
         <div class="row">
@@ -19,7 +19,7 @@
                     <ng-container *ngIf="optionSelect">
                         <div class="form-group" *ngFor="let optionEntry of optionsEntry;let k=index;">
                             <label>Enter the value of option {{k+1}}:</label>
-                            <input type="text" class="form-control" [(ngModel)]="optionEntry.value" [ngModelOptions]="{standalone: true}">
+                            <input type="text" class="form-control" [(ngModel)]="optionsEntry[k]" [ngModelOptions]="{standalone: true}">
                         </div>
                     </ng-container>
                     <div class="form-check">

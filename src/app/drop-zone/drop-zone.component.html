@@ -1,5 +1,5 @@
-<div 
-    class="drop-zone" 
+<div
+    class="drop-zone"
     (dragover)="dragOver($event)"
     (drop)="onDrop($event)"
 >
@@ -8,10 +8,10 @@
         <form>
             <div *ngFor="let item of droppedItem" class="dropped-item border p-3 my-3">
                 <label class="form-label">{{item.label}}</label>
-                <ng-container 
-                    *ngIf="item.type==='text' || item.type==='email' || item.type==='password' || 
-                    item.type==='number' || item.type==='date'">   
-                    <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">    
+                <ng-container
+                    *ngIf="item.type==='text' || item.type==='email' || item.type==='password' ||
+                    item.type==='number' || item.type==='date'">
+                    <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">
                 </ng-container>
                 <ng-container *ngIf="item.type==='textarea'">
                     <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
@@ -23,6 +23,12 @@
                             <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
                         </ng-container>
                     </select>
+                </ng-container>
+                <ng-container *ngIf="item.type === 'radio'">
+                    <div class="form-check" *ngFor="let row of item.radioOptions">
+                        <input [value]="row" class="form-check-input" type="radio">
+                        <label [for]="item?.name" class="form-check-label">{{row}}</label>
+                    </div>
                 </ng-container>
             </div>
         </form>
