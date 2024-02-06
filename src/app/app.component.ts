@@ -2,14 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DraggableItemComponent } from './draggable-item/draggable-item.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
-import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Preview } from './preview/preview.component';
 
 @Component({
   selector: 'fb-root',
   standalone: true,
-  imports: [CommonModule,DraggableItemComponent,DropZoneComponent,FormsModule,MatDialogModule],
+  imports: [CommonModule,DraggableItemComponent,DropZoneComponent,MatDialogModule],
   templateUrl: './app.component.html',
   styles:[`
   .scroll{
@@ -20,8 +19,6 @@ import { Preview } from './preview/preview.component';
 })
 export class AppComponent {
     dialog = inject(MatDialog);
-  	numEntries: number=1;
-  	entries: { name: string, email: string }[] = [{ name: '', email: '' }];
   	draggableItems: { label: string, type: string }[] = [
         { label: 'Input Field', type: 'text' },
         { label: 'Text Area', type: 'textarea' },
