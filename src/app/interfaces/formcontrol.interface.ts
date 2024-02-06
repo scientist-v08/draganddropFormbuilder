@@ -12,5 +12,6 @@ export interface FormcontrolInterface {
     options?: OptionsInterface[]
     radioOptions?:string[]
     checkboxOptions?:CheckboxOptionsInterface[]
+    acceptedFileTypes?:string[]
     validators?: ValidatorInterface[]
 }

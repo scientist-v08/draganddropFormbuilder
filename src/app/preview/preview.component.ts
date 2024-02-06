@@ -5,11 +5,12 @@ import { ValidatorInterface } from "../interfaces/validator.interface";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatIconModule } from '@angular/material/icon';
 import { CheckboxOptionsInterface } from "../interfaces/checkbox.interface";
 
 @Component({
     standalone:true,
-    imports:[CommonModule,ReactiveFormsModule,MatDialogModule],
+    imports:[CommonModule,ReactiveFormsModule,MatDialogModule,MatIconModule],
     selector:'fb-preview',
     templateUrl:'./preview.component.html'
 })

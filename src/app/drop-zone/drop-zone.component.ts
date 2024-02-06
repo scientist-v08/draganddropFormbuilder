@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { InputCreationPopupComponent } from "../input-field-creation-popup/input-field-creation-popup.component";
 import { take } from "rxjs";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
@@ -9,10 +10,11 @@ import { TextareaPopupComponent } from "../textarea-creation-popup/textarea-popu
 import { SelectBoxCreationPopupComponent } from "../selectBox-creation-popup/selectBox-creation.component";
 import { RadioButtonCreationPopup } from "../radio-button-creation-popup/radio-button-creation-popup.component";
 import { CheckboxCreationPopup } from "../checkbox-creation-popup/checkbox-creation-popup.component";
+import { FileuploadCreationPopup } from "../file-upload-creation-popup/file-upload-creation.component";
 
 @Component({
     standalone:true,
-    imports:[CommonModule,MatDialogModule],
+    imports:[CommonModule,MatDialogModule,MatIconModule],
     selector:'fb-drop-zone',
     templateUrl:"./drop-zone.component.html",
     styleUrls:["./drop-zone.component.scss"]
@@ -79,6 +81,17 @@ export class DropZoneComponent{
         }
         else if(label === 'Check Box'){
             const dialogClosed = this.dialog.open(CheckboxCreationPopup,{
+                width:'25%',
+                data:{class:this.class}
+            });
+            dialogClosed.afterClosed()
+                .pipe(take(1))
+                .subscribe(result=>{
+                    if(result===1) this.droppedItem=this.getJson.getAllFields();
+                });
+        }
+        else if(label === 'File Upload'){
+            const dialogClosed = this.dialog.open(FileuploadCreationPopup,{
                 width:'25%',
                 data:{class:this.class}
             });

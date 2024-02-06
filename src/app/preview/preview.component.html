@@ -65,6 +65,19 @@
                 >{{getValidationError(control)}}</small>
             </div>
         </ng-container>
+        <ng-container *ngIf="control.type==='file'">
+            <div [class]="control.class">
+                <label>{{control.label}}</label>
+                <div class="input-group mb-3">
+                    <input formControlName="{{control.name}}" type="file" name="fileUpload" class="form-control" [accept]="control.acceptedFileTypes">
+                    <span class="input-group-text" id="basic-addon2"><mat-icon>vertical_align_top</mat-icon>Upload</span>
+                </div>
+                <small
+                *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                class="text-danger"
+                >{{getValidationError(control)}}</small>
+            </div>
+        </ng-container>
     </ng-container>
     </form>
 </mat-dialog-content>

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Define the input field</h2>
+<mat-dialog-content>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 ml-auto">
+                <form>
+                    <div class="form-group">
+                        <label for="label"><b>Label of the field</b></label>
+                        <input (keydown)="enableSubmitButton()" type="text" id="label" [(ngModel)]="label" class="form-control" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <label><b>Which file types are allowed?</b></label>
+                    <div class="form-check" *ngFor="let fileType of allowedFileTypes;let i=index;">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="fileType.value" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label">{{allowedTypesLabel[i]}}</label>
+                    </div>
+                    <label><b>Is this a required field? (if not ticked will be considered as no)</b></label>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="requiredField" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button class="btn btn-primary" [disabled]="!enableSubmit" type="submit" (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>
