@@ -6,7 +6,7 @@
                 <form>
                     <div class="form-group">
                         <label for="label">Label of the field</label>
-                        <input (keyup)="enableSubmitButton()" type="text" id="label" [(ngModel)]="label" class="form-control" [ngModelOptions]="{standalone: true}">
+                        <input (keydown)="enableSubmitButton()" type="text" id="label" [(ngModel)]="label" class="form-control" [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-group">
                         <label for="value">Initial value (Make sure it is one of the options)</label>
@@ -18,7 +18,7 @@
                     </div>
                     <ng-container *ngIf="optionSelect">
                         <div class="form-group" *ngFor="let optionEntry of optionsEntry;let k=index;">
-                            <label>Enter the value of option {{k+1}}:</label>                            
+                            <label>Enter the value of option {{k+1}}:</label>
                             <input type="text" class="form-control" [(ngModel)]="optionEntry.value" [ngModelOptions]="{standalone: true}">
                         </div>
                     </ng-container>

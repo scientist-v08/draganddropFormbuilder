@@ -28,6 +28,7 @@ export class TextareaPopupComponent{
     numberOfValidation:number=0;
     validators:ValidatorInterface[]=[];
     validatorSelector:boolean=false;
+	  enableSubmit:boolean=false;
 
     checkToAddValidation():void{
         if(this.ValidationAdd==='Yes'){
@@ -100,5 +101,11 @@ export class TextareaPopupComponent{
             this.jsonStorage.fieldCreator(field);
         }
         this.dialogRef.close(1);
+    }
+
+    enableSubmitButton():void{
+        if(this.label!==""){
+            this.enableSubmit=true;
+        }
     }
 }

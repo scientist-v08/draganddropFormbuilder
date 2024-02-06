@@ -29,6 +29,7 @@ export class InputCreationPopupComponent{
     public numberOfValidation:number=0;
     public validators:ValidatorInterface[]=[];
     public validatorSelector:boolean=false;
+	public enableSubmit:boolean=false;
 
     onSubmit():void{
         let field: FormcontrolInterface;
@@ -114,5 +115,11 @@ export class InputCreationPopupComponent{
             this.validators.push({ validationName:'', message:"", maxLength:0, minLength:0, pattern:"" });
         }
         this.validatorSelector=true;
+    }
+
+	enableSubmitButton():void{
+        if(this.label!==""){
+            this.enableSubmit=true;
+        }
     }
 }
