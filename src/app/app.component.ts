@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DraggableItemComponent } from './draggable-item/draggable-item.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Preview } from './preview/preview.component';
+import { FormJsonCreator } from './services/formjsoncreator.service';
+import { FormcontrolInterface } from './interfaces/formcontrol.interface';
 
 @Component({
   selector: 'fb-root',
@@ -15,10 +17,17 @@ import { Preview } from './preview/preview.component';
     overflow-x: hidden;
     overflow-y: scroll;
   }
+  .drop-zone {
+    border: 2px dashed #ccc;
+    padding: 2%;
+    // margin-top: 20px;
+  }
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     dialog = inject(MatDialog);
+    jsonCreated = inject(FormJsonCreator);
+    jsonFormat:FormcontrolInterface[]=[];
   	draggableItems: { label: string, type: string }[] = [
         { label: 'Input Field', type: 'text' },
         { label: 'Text Area', type: 'textarea' },
@@ -29,9 +38,17 @@ export class AppComponent {
         { label: 'Layout', type: 'layout' },
   	];
 
+    public ngOnInit():void{
+        this.viewJson();
+    }
+
     onClickPreview():void{
         this.dialog.open(Preview,{
             width: '65%'
         });
+    }
+
+    viewJson():void{
+        this.jsonFormat=this.jsonCreated.getAllFields();
     }
 }

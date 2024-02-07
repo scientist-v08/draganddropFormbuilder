@@ -17,7 +17,7 @@ export class RadioButtonCreationPopup{
     private jsonStorage = inject(FormJsonCreator);
     private nameGenerator = inject(FormcontrolNameGenerator);
     public dialogRef = inject(MatDialogRef<RadioButtonCreationPopup>);
-    constructor(@Inject(MAT_DIALOG_DATA) public data: {class:string}) {}
+    constructor(@Inject(MAT_DIALOG_DATA) public data: {class:string,rowId?:number,columnId?:number}) {}
 
     label:string="";
     value:string="";

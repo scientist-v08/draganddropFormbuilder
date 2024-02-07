@@ -20,7 +20,7 @@ export class Preview{
     public dialogRef = inject(MatDialogRef<Preview>);
     form : FormcontrolInterface[];
 	  constructor() {
-		    this.form = this.formJson.getAllFields();
+        this.form = this.formJson.getAllFields();
 	  }
     dynamicForm : FormGroup = this.fb.group({},{updateOn:'submit'});
     public ngOnInit():void{
@@ -36,20 +36,36 @@ export class Preview{
                     if(val.validationName==='pattern') controlValidators.push(Validators.pattern(val.pattern as string));
                 })
             }
-            if(control.type !== 'checkbox')formGroup[control.name] = new FormControl(control.value ? control.value : '',controlValidators);
+            if(control.type !== 'checkbox' && control.type !== 'layout')formGroup[control.name] = new FormControl(control.value ? control.value : '',controlValidators);
             else if(control.type === 'checkbox'){
-                formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[],controlValidators);
+                formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[]);
+            }
+            else if(control.type === 'layout'){
+                let layoutControlValidator: any = [];
+                if(control.layout?.validators){
+                    control.layout?.validators.forEach((val:ValidatorInterface)=>{
+                        if(val.validationName==='required') layoutControlValidator.push(Validators.required);
+                        if(val.validationName==='email') layoutControlValidator.push(Validators.email);
+                        if(val.validationName==='maxlength') layoutControlValidator.push(Validators.maxLength(val.maxLength as number));
+                        if(val.validationName==='minlength') layoutControlValidator.push(Validators.minLength(val.minLength as number));
+                        if(val.validationName==='pattern') layoutControlValidator.push(Validators.pattern(val.pattern as string));
+                    });
+                }
+                if(control.layout?.type !== 'checkbox')formGroup[control.name] = new FormControl(control.value ? control.value : '',layoutControlValidator);
+                else if(control.layout?.type === 'checkbox'){
+                    formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[]);
+                }
             }
         });
         this.dynamicForm=this.fb.group(formGroup);
     }
 
-    private createCheckboxForm(options:CheckboxOptionsInterface[],validation:any) {
+    private createCheckboxForm(options:CheckboxOptionsInterface[]) {
         const group : any = {};
         options.forEach(option=>{
             group[option.value] = new FormControl(false);
         });
-        return this.fb.group(group,validation);
+        return this.fb.group(group);
     }
 
     onSubmit():void{

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="layoutForm" (ngSubmit)="onSave()">
+                <label>Select Size:</label>
+                <select
+                    class="form-select"
+                    formControlName="size"
+                >
+                    <option value="">Select Size</option>
+                    <option *ngFor="let size of sizeList" value="{{size.id}}" id="{{size.id}}">
+                    {{size.name}}
+                    </option>
+                </select>
+                <label>Select Column Width</label>
+                <select
+                    class="form-select"
+                    formControlName="columnSize"
+                >
+                    <option value="">Select Column Size</option>
+                    <option *ngFor="let size of columnSizes" value="{{size}}" id="{{size}}">
+                        {{size}}
+                    </option>
+                </select>
+                <label>Select Number Of Feilds</label>
+                <input
+                    type="number"
+                    id="layoutFormNumberInput"
+                    class="form-control"
+                    formControlName="numberOfFields"
+                >
+                <br>
+                <button [disabled]="!layoutForm.valid" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { CheckboxOptionsInterface } from "./checkbox.interface";
+import { LayoutFormcontrolInterface } from "./layoutformcontrol.interface";
 import { OptionsInterface } from "./options.interface";
 import { ValidatorInterface } from "./validator.interface";
 
@@ -14,4 +15,6 @@ export interface FormcontrolInterface {
     checkboxOptions?:CheckboxOptionsInterface[]
     acceptedFileTypes?:string[]
     validators?: ValidatorInterface[]
+    layout?: LayoutFormcontrolInterface
+    rowId?: number
 }

@@ -10,4 +10,7 @@ export class FormJsonCreator{
     public getAllFields():FormcontrolInterface[]{
         return this.droppedItem;
     }
+    public setFieldByIndex(data:FormcontrolInterface,index:number):void{
+        this.droppedItem[index]=data;
+    }
 }

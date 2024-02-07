@@ -17,7 +17,7 @@ export class InputCreationPopupComponent{
     private jsonStorage = inject(FormJsonCreator);
     private nameGenerator = inject(FormcontrolNameGenerator);
     public dialogRef = inject(MatDialogRef<InputCreationPopupComponent>);
-    constructor(@Inject(MAT_DIALOG_DATA) public data: {class:string}) {}
+    constructor(@Inject(MAT_DIALOG_DATA) public data: {class:string,rowId?:number,columnId?:number}) {}
 
     public label:string="";
     public value:string="";
@@ -32,6 +32,41 @@ export class InputCreationPopupComponent{
 	public enableSubmit:boolean=false;
 
     onSubmit():void{
+        if(this.data.rowId === undefined){
+            this.withoutLayoutFormCreation();
+        }
+        else if(this.data.rowId !== undefined){
+            this.withLayoutFormCreation();
+        }
+    }
+
+    checkToAddValidation():void{
+        if(this.ValidationAdd==='Yes'){
+            this.showNumOfVals=true;
+        }
+        else if(this.ValidationAdd==='No'){
+            this.showNumOfVals=false;
+            this.numberOfValidation=0;
+            this.validators=[];
+            this.validatorSelector=false;
+        }
+    }
+
+    addEntries():void{
+        this.validators=[];
+        for(let i=0;i<this.numberOfValidation;i++){
+            this.validators.push({ validationName:'', message:"", maxLength:0, minLength:0, pattern:"" });
+        }
+        this.validatorSelector=true;
+    }
+
+	enableSubmitButton():void{
+        if(this.label!==""){
+            this.enableSubmit=true;
+        }
+    }
+
+    withoutLayoutFormCreation():void{
         let field: FormcontrolInterface;
         if(this.validatorSelector===false){
             field = {
@@ -97,29 +132,90 @@ export class InputCreationPopupComponent{
         this.dialogRef.close(1);
     }
 
-    checkToAddValidation():void{
-        if(this.ValidationAdd==='Yes'){
-            this.showNumOfVals=true;
+    withLayoutFormCreation():void{
+        let field: FormcontrolInterface;
+        const index : number = this.jsonStorage.getAllFields().findIndex(
+            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
+        );
+        if(this.validatorSelector===false){
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'rowId':this.data.rowId,
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'placeholder':this.placeholder,
+                    'type':this.type,
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
         }
-        else if(this.ValidationAdd==='No'){
-            this.showNumOfVals=false;
-            this.numberOfValidation=0;
-            this.validators=[];
-            this.validatorSelector=false;
+        else if(this.validatorSelector===true){
+            let validations:ValidatorInterface[]=[];
+            for(let i=0;i<this.numberOfValidation;i++){
+                if(this.validators[i].validationName==='required'){
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:"This is a required field"
+                    });
+                }
+                else if(this.validators[i].validationName==='email'){
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:"Please enter a valid email"
+                    });
+                }
+                else if(this.validators[i].validationName==='maxlength'){
+                    const messageString : string = "Please enter less than "+this.validators[i].maxLength as string + " characters";
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:messageString,
+                        maxLength:this.validators[i].maxLength
+                    });
+                }
+                else if(this.validators[i].validationName==='minlength'){
+                    const messageString : string = "Please enter more than "+this.validators[i].minLength as string + " characters";
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:messageString,
+                        minLength:this.validators[i].minLength
+                    });
+                }
+                else if(this.validators[i].validationName==='pattern'){
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:this.validators[i].message,
+                        pattern:this.validators[i].pattern
+                    });
+                }
+            }
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'rowId':this.data.rowId,
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'placeholder':this.placeholder,
+                    'type':this.type,
+                    'validators': validations
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
         }
-    }
-
-    addEntries():void{
-        this.validators=[];
-        for(let i=0;i<this.numberOfValidation;i++){
-            this.validators.push({ validationName:'', message:"", maxLength:0, minLength:0, pattern:"" });
-        }
-        this.validatorSelector=true;
-    }
-
-	enableSubmitButton():void{
-        if(this.label!==""){
-            this.enableSubmit=true;
-        }
+        this.dialogRef.close(1);
     }
 }

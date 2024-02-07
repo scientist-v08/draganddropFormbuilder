@@ -1,50 +1,61 @@
-<div
-    class="drop-zone"
-    (dragover)="dragOver($event)"
-    (drop)="onDrop($event)"
->
+<div class="drop-zone" (dragover)="dragOver($event)" (drop)="onDrop($event)">
     <ng-container *ngIf="droppedItem.length === 0">Drop Zone</ng-container>
     <ng-container *ngIf="droppedItem.length !== 0">
-        <form>
-            <div *ngFor="let item of droppedItem" class="dropped-item border p-3 my-3">
-                <label class="form-label">{{item.label}}</label>
-                <ng-container
-                    *ngIf="item.type==='text' || item.type==='email' || item.type==='password' ||
-                    item.type==='number' || item.type==='date'">
-                    <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">
-                </ng-container>
-                <ng-container *ngIf="item.type==='textarea'">
-                    <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
-                </ng-container>
-                <ng-container *ngIf="item.type === 'select'">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="">Choose</option>
-                        <ng-container *ngFor="let opt of item.options">
-                            <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
+        <div class="dropped-item border p-3 my-3" *ngFor="let item of droppedItem;let i=index;">
+        <!-- <div class="container"> -->
+            <div class="row">
+                <!-- <form> -->
+                    <!-- <div> -->
+                        <label *ngIf="item.type !== 'layout'" class="form-label">{{item.label}}</label>
+                        <ng-container
+                            *ngIf="item.type==='text' || item.type==='email' || item.type==='password' ||
+                            item.type==='number' || item.type==='date'">
+                            <input [placeholder]="item.placeholder" class="form-control" [type]="item.type">
                         </ng-container>
-                    </select>
-                </ng-container>
-                <ng-container *ngIf="item.type === 'radio'">
-                    <div class="form-check" *ngFor="let row of item.radioOptions">
-                        <input [value]="row" class="form-check-input" type="radio">
-                        <label [for]="item?.name" class="form-check-label">{{row}}</label>
-                    </div>
-                </ng-container>
-				<ng-container *ngIf="item.type==='checkbox'">
-                    <ng-container *ngFor="let option of item.checkboxOptions">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [value]="option.value">
-                            <label>{{option.label}}</label>
-                        </div>
-                    </ng-container>
-				</ng-container>
-                <ng-container *ngIf="item.type==='file'">
-                    <div class="input-group mb-3">
-                        <input type="file" name="fileUpload" class="form-control" [accept]="item.acceptedFileTypes">
-                        <span class="input-group-text" id="basic-addon2"><mat-icon>vertical_align_top</mat-icon>Upload</span>
-                    </div>
-                </ng-container>
+                        <ng-container *ngIf="item.type==='textarea'">
+                            <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
+                        </ng-container>
+                        <ng-container *ngIf="item.type === 'select'">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected value="">Choose</option>
+                                <ng-container *ngFor="let opt of item.options">
+                                    <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
+                                </ng-container>
+                            </select>
+                        </ng-container>
+                        <ng-container *ngIf="item.type === 'radio'">
+                            <div class="form-check" *ngFor="let row of item.radioOptions">
+                                <input [value]="row" class="form-check-input" type="radio">
+                                <label [for]="item?.name" class="form-check-label">{{row}}</label>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="item.type==='checkbox'">
+                            <ng-container *ngFor="let option of item.checkboxOptions">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" [value]="option.value">
+                                    <label>{{option.label}}</label>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="item.type==='file'">
+                            <div class="input-group mb-3">
+                                <input type="file" name="fileUpload" class="form-control" [accept]="item.acceptedFileTypes">
+                                <span class="input-group-text"><mat-icon>vertical_align_top</mat-icon>Upload</span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="item.type==='layout'">
+                            <ng-container *ngFor="let layout of layoutToBeUsed(i);">
+                                <fb-layout-drop-zone
+                                    [class]="layout"
+                                    [layoutClass]="layout"
+                                    [rowNumber]="i"
+                                    (externalDropZoneDisable)="dropZoneDisable($event)"></fb-layout-drop-zone>
+                            </ng-container>
+                        </ng-container>
+                    <!-- </div> -->
+                <!-- </form> -->
             </div>
-        </form>
+        <!-- </div> -->
+        </div>
     </ng-container>
 </div>
