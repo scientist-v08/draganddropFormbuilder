@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, EventEmitter, Input, Output, inject } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { take, timer } from "rxjs";
@@ -20,7 +20,7 @@ import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.inte
     templateUrl:"./layout-drop-zone.component.html",
     styleUrls:["./layout-drop-zone.component.scss"]
 })
-export class LayoutDropzoneComponent implements AfterViewInit{
+export class LayoutDropzoneComponent implements OnInit{
     dialog = inject(MatDialog);
     formJsonFormat = inject(FormJsonCreator);
 
@@ -121,14 +121,14 @@ export class LayoutDropzoneComponent implements AfterViewInit{
 
     }
     enableExternalDropZone():void{
-        timer(1000)
+        timer(500)
             .pipe(take(1))
             .subscribe(()=>{
                 this.externalDropZoneDisable.emit(true);
             });
     }
 
-    ngAfterViewInit():void{
+    ngOnInit():void{
         let itemToDisplay = this.formJsonFormat.getAllFields();
         let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
         let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
