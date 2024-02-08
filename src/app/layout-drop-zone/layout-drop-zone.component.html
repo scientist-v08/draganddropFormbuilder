@@ -7,11 +7,11 @@
     <ng-container *ngIf="droppedItem.length !== 0">
         <form>
             <div *ngFor="let item of droppedItem;let i=index;">
-                <label class="form-label">{{item.layout?.label}}</label>
+                <label for="field" class="form-label">{{item.layout?.label}}</label>
                 <ng-container
                     *ngIf="item.layout?.type==='text' || item.layout?.type==='email' || item.layout?.type==='password' ||
                     item.layout?.type==='number' || item.layout?.type==='date'">
-                    <input [placeholder]="item.layout?.placeholder" class="form-control" [type]="item.layout?.type">
+                    <input id="field" [placeholder]="item.layout?.placeholder" class="form-control" [type]="item.layout?.type">
                 </ng-container>
                 <ng-container *ngIf="item.layout?.type==='textarea'">
                     <textarea class="form-control" [placeholder]="item.layout?.placeholder"></textarea>

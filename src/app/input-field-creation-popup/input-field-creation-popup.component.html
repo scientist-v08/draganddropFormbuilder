@@ -28,19 +28,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="addValOrNot">Do you want to add validations?</label>
+                            <label for="yesCheck">Do you want to add validations?</label>
                             <div class="form-check">
-                                <input [(ngModel)]="ValidationAdd" value="Yes" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
+                                <input [(ngModel)]="ValidationAdd" id="yesCheck" value="Yes" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
                                 <label for="yesCheck" class="form-check-label">Yes</label>
                             </div>
                             <div class="form-check">
-                                <input [(ngModel)]="ValidationAdd" value="No" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
+                                <input [(ngModel)]="ValidationAdd" id="noCheck" value="No" class="form-check-input" type="radio" (change)="checkToAddValidation()" [ngModelOptions]="{standalone: true}">
                                 <label for="noCheck" class="form-check-label">No</label>
                             </div>
                         </div>
                         <div class="form-group" *ngIf="showNumOfVals">
                             <label for="numOfValidators">Select number of Validators to be added</label>
-                            <select [(ngModel)]="numberOfValidation" class="form-select" (change)="addEntries()" [ngModelOptions]="{standalone: true}">
+                            <select [(ngModel)]="numberOfValidation" id="numOfValidators" class="form-select" (change)="addEntries()" [ngModelOptions]="{standalone: true}">
                                 <option value=1>1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
@@ -50,7 +50,7 @@
                         <ng-container *ngIf="validatorSelector">
                             <div class="form-group" *ngFor="let item of validators;let k=index;">
                                 <label for="typeOfValidator">{{k+1}}:Which type of Validator do you want to add?</label>
-                                <select [(ngModel)]="item.validationName" class="form-select" [ngModelOptions]="{standalone: true}">
+                                <select id="typeOfValidator" [(ngModel)]="item.validationName" class="form-select" [ngModelOptions]="{standalone: true}">
                                     <option value="required">Required</option>
                                     <option value="email">Email</option>
                                     <option value="maxlength">Maximum Length</option>
@@ -60,22 +60,22 @@
                                 <ng-container *ngIf="item.validationName !== ''">
                                     <ng-container *ngIf="item.validationName==='maxlength'">
                                         For {{k+1}}:
-                                        <label>Enter maximum length:</label>
-                                        <input type="number" class="form-control" [(ngModel)]="item.maxLength" [ngModelOptions]="{standalone: true}">
+                                        <label for="maxlength">Enter maximum length:</label>
+                                        <input id="maxlength" type="number" class="form-control" [(ngModel)]="item.maxLength" [ngModelOptions]="{standalone: true}">
                                     </ng-container>
                                     <ng-container *ngIf="item.validationName==='minlength'">
                                         For {{k+1}}:
-                                        <label>Enter minimum length:</label>
-                                        <input type="number" class="form-control" [(ngModel)]="item.minLength" [ngModelOptions]="{standalone: true}">
+                                        <label for="minLength">Enter minimum length:</label>
+                                        <input id="minLength" type="number" class="form-control" [(ngModel)]="item.minLength" [ngModelOptions]="{standalone: true}">
                                     </ng-container>
                                     <ng-container *ngIf="item.validationName==='pattern'">
                                         For {{k+1}}:
-                                        <label>Enter pattern:</label>
-                                        <input type="text" class="form-control" [(ngModel)]="item.pattern" [ngModelOptions]="{standalone: true}">
+                                        <label for="pattern">Enter pattern:</label>
+                                        <input id="pattern" type="text" class="form-control" [(ngModel)]="item.pattern" [ngModelOptions]="{standalone: true}">
                                         <br>
                                         For {{k+1}}:
-                                        <label>Message to appear in case of error:</label>
-                                        <input type="text" class="form-control" [(ngModel)]="item.message" [ngModelOptions]="{standalone: true}">
+                                        <label for="errorMessage">Message to appear in case of error:</label>
+                                        <input id="errorMessage" type="text" class="form-control" [(ngModel)]="item.message" [ngModelOptions]="{standalone: true}">
                                     </ng-container>
                                 </ng-container>
                             </div>
