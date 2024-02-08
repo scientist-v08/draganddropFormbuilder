@@ -6,6 +6,7 @@ import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { ValidatorInterface } from "../interfaces/validator.interface";
 import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.service";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -119,28 +120,21 @@ export class TextareaPopupComponent{
     }
 
     withLayoutFormCreation():void{
-        let field: FormcontrolInterface;
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
+        let field: LayoutFormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
+        
         if(this.validatorSelector===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'placeholder':this.placeholder,
-                    'type':'textarea'
-                }
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'placeholder':this.placeholder,
+                'type':'textarea'
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.validatorSelector===true){
             let validations:ValidatorInterface[]=[];
@@ -169,23 +163,15 @@ export class TextareaPopupComponent{
                 }
             }
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'placeholder':this.placeholder,
-                    'type':'textarea',
-                    'validators': validations
-                }
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'placeholder':this.placeholder,
+                'type':'textarea',
+                'validators': validations
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }

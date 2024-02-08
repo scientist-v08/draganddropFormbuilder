@@ -42,20 +42,22 @@ export class Preview{
                 formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[]);
             }
             else if(control.type === 'layout' && control.layout){
-                let layoutControlValidator: any = [];
-                if(control.layout.validators){
-                    control.layout.validators.forEach((val:ValidatorInterface)=>{
-                        if(val.validationName==='required') layoutControlValidator.push(Validators.required);
-                        if(val.validationName==='email') layoutControlValidator.push(Validators.email);
-                        if(val.validationName==='maxlength') layoutControlValidator.push(Validators.maxLength(val.maxLength as number));
-                        if(val.validationName==='minlength') layoutControlValidator.push(Validators.minLength(val.minLength as number));
-                        if(val.validationName==='pattern') layoutControlValidator.push(Validators.pattern(val.pattern as string));
-                    });
-                }
-                if(control.layout.type !== 'checkbox')formGroup[control.layout.name] = new FormControl(control.layout.value ? control.layout.value : '',layoutControlValidator);
-                else if(control.layout.type === 'checkbox'){
-                    formGroup[control.layout.name] = this.createCheckboxForm(control.layout.checkboxOptions as CheckboxOptionsInterface[]);
-                }
+                control.layout.forEach((item:LayoutFormcontrolInterface)=>{
+                    let layoutControlValidator: any = [];
+                    if(item.validators){
+                        item.validators.forEach((val:ValidatorInterface)=>{
+                            if(val.validationName==='required') layoutControlValidator.push(Validators.required);
+                            if(val.validationName==='email') layoutControlValidator.push(Validators.email);
+                            if(val.validationName==='maxlength') layoutControlValidator.push(Validators.maxLength(val.maxLength as number));
+                            if(val.validationName==='minlength') layoutControlValidator.push(Validators.minLength(val.minLength as number));
+                            if(val.validationName==='pattern') layoutControlValidator.push(Validators.pattern(val.pattern as string));
+                        });
+                    }
+                    if(item.type !== 'checkbox')formGroup[item.name] = new FormControl(item.value ? item.value : '',layoutControlValidator);
+                    else if(item.type === 'checkbox'){
+                        formGroup[item.name] = this.createCheckboxForm(item.checkboxOptions as CheckboxOptionsInterface[]);
+                    }
+                });
             }
         });
         this.dynamicForm=this.fb.group(formGroup);

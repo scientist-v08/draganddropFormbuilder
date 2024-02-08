@@ -7,40 +7,40 @@
     <ng-container *ngIf="droppedItem.length !== 0">
         <form>
             <div *ngFor="let item of droppedItem;let i=index;">
-                <label for="field" class="form-label">{{item.layout?.label}}</label>
+                <label for="field" class="form-label">{{item.label}}</label>
                 <ng-container
-                    *ngIf="item.layout?.type==='text' || item.layout?.type==='email' || item.layout?.type==='password' ||
-                    item.layout?.type==='number' || item.layout?.type==='date'">
-                    <input id="field" [placeholder]="item.layout?.placeholder" class="form-control" [type]="item.layout?.type">
+                    *ngIf="item.type==='text' || item.type==='email' || item.type==='password' ||
+                    item.type==='number' || item.type==='date'">
+                    <input id="field" [placeholder]="item.placeholder" class="form-control" [type]="item.type">
                 </ng-container>
-                <ng-container *ngIf="item.layout?.type==='textarea'">
-                    <textarea class="form-control" [placeholder]="item.layout?.placeholder"></textarea>
+                <ng-container *ngIf="item.type==='textarea'">
+                    <textarea class="form-control" [placeholder]="item.placeholder"></textarea>
                 </ng-container>
-                <ng-container *ngIf="item.layout?.type === 'select'">
+                <ng-container *ngIf="item.type === 'select'">
                     <select class="form-select" aria-label="Default select example">
                         <option selected value="">Choose</option>
-                        <ng-container *ngFor="let opt of item.layout?.options">
+                        <ng-container *ngFor="let opt of item.options">
                             <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
                         </ng-container>
                     </select>
                 </ng-container>
-                <ng-container *ngIf="item.layout?.type === 'radio'">
-                    <div class="form-check" *ngFor="let row of item.layout?.radioOptions">
+                <ng-container *ngIf="item.type === 'radio'">
+                    <div class="form-check" *ngFor="let row of item.radioOptions">
                         <input [value]="row" class="form-check-input" type="radio">
-                        <label [for]="item.layout?.name" class="form-check-label">{{row}}</label>
+                        <label [for]="item.name" class="form-check-label">{{row}}</label>
                     </div>
                 </ng-container>
-				<ng-container *ngIf="item.layout?.type==='checkbox'">
-                    <ng-container *ngFor="let option of item.layout?.checkboxOptions">
+				<ng-container *ngIf="item.type==='checkbox'">
+                    <ng-container *ngFor="let option of item.checkboxOptions">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" [value]="option.value">
                             <label>{{option.label}}</label>
                         </div>
                     </ng-container>
 				</ng-container>
-                <ng-container *ngIf="item.layout?.type==='file'">
+                <ng-container *ngIf="item.type==='file'">
                     <div class="input-group mb-3">
-                        <input type="file" name="fileUpload" class="form-control" [accept]="item.layout?.acceptedFileTypes">
+                        <input type="file" name="fileUpload" class="form-control" [accept]="item.acceptedFileTypes">
                         <span class="input-group-text"><mat-icon>vertical_align_top</mat-icon>Upload</span>
                     </div>
                 </ng-container>

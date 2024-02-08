@@ -6,6 +6,7 @@ import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.service";
 import { ValidatorInterface } from "../interfaces/validator.interface";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
 	standalone:true,
@@ -89,30 +90,22 @@ export class RadioButtonCreationPopup{
     }
 
     withLayoutFormCreation():void{
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
-        let field: FormcontrolInterface;
+        let field: LayoutFormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
+        
         if(this.requiredField===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'radioOptions':this.optionsEntry,
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'radioOptions':this.optionsEntry,
-                    'placeholder':"",
-                    'type':'radio'
-                }
+                'type':'radio'
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.requiredField===true){
             let validations:ValidatorInterface[]=[{
@@ -120,25 +113,16 @@ export class RadioButtonCreationPopup{
                 message:"This is a required field"
             }];
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'radioOptions':this.optionsEntry,
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'radioOptions':this.optionsEntry,
-                    'placeholder':"",
-                    'type':'radio',
-                    'validators': validations,
-                }
+                'type':'radio',
+                'validators': validations,
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }

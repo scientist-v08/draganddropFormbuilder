@@ -7,6 +7,7 @@ import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.s
 import { CheckboxOptionsInterface } from "../interfaces/checkbox.interface";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { ValidatorInterface } from "../interfaces/validator.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -92,32 +93,25 @@ export class CheckboxCreationPopup{
     }
 
     withLayoutFormCreation():void{
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
-        let field: FormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
+        
+        let field: LayoutFormcontrolInterface;
         this.optionsEntry.forEach(option=>{
             option.value=this.nameGenerator.transformString(option.label)
         })
         if(this.requiredField===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'layout':{
-                    label:this.label,
-                    name:this.nameGenerator.transformString(this.label),
-                    value:"",
-                    checkboxOptions:this.optionsEntry,
-                    placeholder:"",
-                    type:"",
-                    columnNumber:this.data.columnId as number
-                }
+                label:this.label,
+                name:this.nameGenerator.transformString(this.label),
+                value:"",
+                checkboxOptions:this.optionsEntry,
+                placeholder:"",
+                type:"",
+                columnNumber:this.data.columnId as number 
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.requiredField===true){
             let validations:ValidatorInterface[]=[{
@@ -125,24 +119,16 @@ export class CheckboxCreationPopup{
                 message:"This is a required field"
             }];
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'layout':{
-                    label:this.label,
-                    name:this.nameGenerator.transformString(this.label),
-                    value:"",
-                    checkboxOptions:this.optionsEntry,
-                    placeholder:"",
-                    type:"",
-                    columnNumber:this.data.columnId as number,
-                    validators:validations
-                }
+                label:this.label,
+                name:this.nameGenerator.transformString(this.label),
+                value:"",
+                checkboxOptions:this.optionsEntry,
+                placeholder:"",
+                type:"",
+                columnNumber:this.data.columnId as number,
+                validators:validations
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }

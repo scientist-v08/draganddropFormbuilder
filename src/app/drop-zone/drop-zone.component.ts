@@ -15,6 +15,7 @@ import { LayoutCreationPopupComponent } from "../layout-creation-popup/layout-cr
 import { LayoutCreationInterface } from "../interfaces/layoutcreation.interface";
 import { LayoutTrackerInterface } from "../interfaces/layouttracker.interface";
 import { LayoutDropzoneComponent } from "../layout-drop-zone/layout-drop-zone.component";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -137,24 +138,27 @@ export class DropZoneComponent{
                         this.rowNumber++;
                         let class_ = "col-"+result.size+"-"+result.columnSize;
                         this.layoutCreationFunc(this.rowNumber,class_,result.numberOfFields);
+                        let droppedLayoutItem:LayoutFormcontrolInterface[]=[];
                         for(let i=0;i<result.numberOfFields;i++){
-                            let droppedLayoutItem : FormcontrolInterface = {
+                            let droppedLayoutItemIterator : LayoutFormcontrolInterface = {
                                 name:"",
                                 label:"",
                                 placeholder:"",
-                                class:"",
-                                type:"layout",
-                                rowId: this.rowNumber,
-                                layout: {
-                                    name:"",
-                                    label:"",
-                                    placeholder:"",
-                                    columnNumber: i,
-                                    type:""
-                                }
+                                columnNumber: i,
+                                type:""    
                             }
-                            this.formJsonFormat.fieldCreator(droppedLayoutItem);
+                            droppedLayoutItem.push(droppedLayoutItemIterator);
                         }
+                        let droppedField:FormcontrolInterface = {
+                            "name": "",
+                            "label": "",
+                            "placeholder": "",
+                            "class": class_,
+                            "type": "layout",
+                            "rowId": this.rowNumber,
+                            "layout": droppedLayoutItem
+                        }
+                        this.formJsonFormat.fieldCreator(droppedField);
                         this.droppedItem=this.formJsonFormat.getAllFields();
                     });
             }

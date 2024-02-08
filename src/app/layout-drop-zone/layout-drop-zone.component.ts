@@ -11,6 +11,7 @@ import { TextareaPopupComponent } from "../textarea-creation-popup/textarea-popu
 import { InputCreationPopupComponent } from "../input-field-creation-popup/input-field-creation-popup.component";
 import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -24,7 +25,7 @@ export class LayoutDropzoneComponent{
     formJsonFormat = inject(FormJsonCreator);
 
     dropItem:string[]=[];
-    droppedItem:FormcontrolInterface[]=[];
+    droppedItem:LayoutFormcontrolInterface[]=[];
     @Input() layoutClass!:string;
     @Input() rowNumber!:number;
     @Input() columnNumber!:number;
@@ -50,8 +51,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }
@@ -66,8 +68,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }
@@ -82,8 +85,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }
@@ -98,8 +102,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }
@@ -114,8 +119,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }
@@ -130,8 +136,9 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        let obtainedItem = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface;
-                        this.droppedItem.push(obtainedItem);
+                        let obtainedFieldItem = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface;
+                        let obatinedLayoutItem = obtainedFieldItem.layout?.find(item=>item.columnNumber===this.columnNumber) as LayoutFormcontrolInterface;
+                        this.droppedItem.push(obatinedLayoutItem);
                     }
                 });
         }

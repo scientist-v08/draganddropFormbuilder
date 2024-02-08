@@ -15,6 +15,6 @@ export interface FormcontrolInterface {
     checkboxOptions?:CheckboxOptionsInterface[]
     acceptedFileTypes?:string[]
     validators?: ValidatorInterface[]
-    layout?: LayoutFormcontrolInterface
+    layout?: LayoutFormcontrolInterface[]
     rowId?: number
 }

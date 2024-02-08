@@ -6,6 +6,7 @@ import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.s
 import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { ValidatorInterface } from "../interfaces/validator.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -102,28 +103,21 @@ export class FileuploadCreationPopup{
     }
 
     withLayoutFormCreation(allowedFiles:string[]):void{
-        let field: FormcontrolInterface;
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
+        let field: LayoutFormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
+        
         if(this.requiredField===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout': {
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'placeholder':"",
-                    'acceptedFileTypes':allowedFiles,
-                    'type':'file',
-                    'columnNumber': this.data.columnId as number
-                }
+                'acceptedFileTypes':allowedFiles,
+                'type':'file',
+                'columnNumber': this.data.columnId as number
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.requiredField===true){
             let validations:ValidatorInterface[]=[{
@@ -131,23 +125,15 @@ export class FileuploadCreationPopup{
                 message:"This is a required field"
             }];
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout': {
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'placeholder':"",
-                    'acceptedFileTypes':allowedFiles,
-                    'type':'file',
-                    'validators': validations,
-                    'columnNumber': this.data.columnId as number
-                }
+                'acceptedFileTypes':allowedFiles,
+                'type':'file',
+                'validators': validations,
+                'columnNumber': this.data.columnId as number
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }

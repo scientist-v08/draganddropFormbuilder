@@ -44,10 +44,10 @@
                             </div>
                         </ng-container>
                         <ng-container *ngIf="item.type==='layout'">
-                            <ng-container *ngFor="let layout of layoutToBeUsed(i);let j=index">
+                            <ng-container *ngFor="let layout of item.layout;let j=index">
                                 <fb-layout-drop-zone
-                                    [class]="layout"
-                                    [layoutClass]="layout"
+                                    [class]=item.class
+                                    [layoutClass]=item.class
                                     [rowNumber]="i"
                                     [columnNumber]="j"
                                     (externalDropZoneDisable)="dropZoneDisable($event)"></fb-layout-drop-zone>

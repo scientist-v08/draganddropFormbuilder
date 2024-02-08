@@ -6,6 +6,7 @@ import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { ValidatorInterface } from "../interfaces/validator.interface";
 import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.service";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -133,29 +134,20 @@ export class InputCreationPopupComponent{
     }
 
     withLayoutFormCreation():void{
-        let field: FormcontrolInterface;
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
+        let field: LayoutFormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
         if(this.validatorSelector===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'placeholder':this.placeholder,
-                    'type':this.type,
-                }
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'placeholder':this.placeholder,
+                'type':this.type,
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.validatorSelector===true){
             let validations:ValidatorInterface[]=[];
@@ -197,24 +189,15 @@ export class InputCreationPopupComponent{
                 }
             }
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
-                'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'placeholder':this.placeholder,
-                    'type':this.type,
-                    'validators': validations
-                }
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'placeholder':this.placeholder,
+                'type':this.type,
+                'validators': validations  
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }

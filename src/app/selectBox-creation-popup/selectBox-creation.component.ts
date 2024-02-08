@@ -7,6 +7,7 @@ import { FormcontrolNameGenerator } from "../services/formcontrolnamegenerator.s
 import { OptionsInterface } from "../interfaces/options.interface";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { ValidatorInterface } from "../interfaces/validator.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -90,30 +91,22 @@ export class SelectBoxCreationPopupComponent{
     }
 
     withLayoutFormCreation():void{
-        let field: FormcontrolInterface;
-        const index : number = this.jsonStorage.getAllFields().findIndex(
-            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
-        );
+        let field: LayoutFormcontrolInterface;
+        const fieldIndex : number = this.jsonStorage.getAllFields().findIndex(item => item.rowId === this.data.rowId);
+        const fieldData : FormcontrolInterface = this.jsonStorage.getAllFields().find(item => item.rowId === this.data.rowId) as FormcontrolInterface;
+        const layoutIndex : number = fieldData.layout?.findIndex(item => item.columnNumber === this.data.columnId) as number;
+        
         if(this.requiredField===false){
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'options':this.optionsEntry,
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'options':this.optionsEntry,
-                    'placeholder':"",
-                    'type':'select',
-                }
+                'type':'select',
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         else if(this.requiredField===true){
             let validations:ValidatorInterface[]=[{
@@ -121,25 +114,16 @@ export class SelectBoxCreationPopupComponent{
                 message:"This is a required field"
             }];
             field = {
-                'class':this.class,
-                'label':"",
-                'name':"",
-                'value':"",
+                'columnNumber':this.data.columnId as number,
+                'label':this.label,
+                'name':this.nameGenerator.transformString(this.label),
+                'value':this.value,
+                'options':this.optionsEntry,
                 'placeholder':"",
-                'type':'layout',
-                'rowId':this.data.rowId,
-                'layout':{
-                    'columnNumber':this.data.columnId as number,
-                    'label':this.label,
-                    'name':this.nameGenerator.transformString(this.label),
-                    'value':this.value,
-                    'options':this.optionsEntry,
-                    'placeholder':"",
-                    'type':'select',
-                    'validators': validations,
-                }
+                'type':'select',
+                'validators': validations,
             }
-            this.jsonStorage.setFieldByIndex(field,index);
+            this.jsonStorage.setFieldByIndex(field,fieldIndex,layoutIndex);
         }
         this.dialogRef.close(1);
     }
