@@ -7,6 +7,7 @@ import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from '@angular/material/icon';
 import { CheckboxOptionsInterface } from "../interfaces/checkbox.interface";
+import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
 @Component({
     standalone:true,
@@ -16,12 +17,12 @@ import { CheckboxOptionsInterface } from "../interfaces/checkbox.interface";
 })
 export class Preview{
     fb = inject(FormBuilder);
-	  formJson = inject(FormJsonCreator);
+	formJson = inject(FormJsonCreator);
     public dialogRef = inject(MatDialogRef<Preview>);
     form : FormcontrolInterface[];
-	  constructor() {
+	constructor() {
         this.form = this.formJson.getAllFields();
-	  }
+	}
     dynamicForm : FormGroup = this.fb.group({},{updateOn:'submit'});
     public ngOnInit():void{
         let formGroup: any = {};
@@ -40,10 +41,10 @@ export class Preview{
             else if(control.type === 'checkbox'){
                 formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[]);
             }
-            else if(control.type === 'layout'){
+            else if(control.type === 'layout' && control.layout){
                 let layoutControlValidator: any = [];
-                if(control.layout?.validators){
-                    control.layout?.validators.forEach((val:ValidatorInterface)=>{
+                if(control.layout.validators){
+                    control.layout.validators.forEach((val:ValidatorInterface)=>{
                         if(val.validationName==='required') layoutControlValidator.push(Validators.required);
                         if(val.validationName==='email') layoutControlValidator.push(Validators.email);
                         if(val.validationName==='maxlength') layoutControlValidator.push(Validators.maxLength(val.maxLength as number));
@@ -51,9 +52,9 @@ export class Preview{
                         if(val.validationName==='pattern') layoutControlValidator.push(Validators.pattern(val.pattern as string));
                     });
                 }
-                if(control.layout?.type !== 'checkbox')formGroup[control.name] = new FormControl(control.value ? control.value : '',layoutControlValidator);
-                else if(control.layout?.type === 'checkbox'){
-                    formGroup[control.name] = this.createCheckboxForm(control.checkboxOptions as CheckboxOptionsInterface[]);
+                if(control.layout.type !== 'checkbox')formGroup[control.layout.name] = new FormControl(control.layout.value ? control.layout.value : '',layoutControlValidator);
+                else if(control.layout.type === 'checkbox'){
+                    formGroup[control.layout.name] = this.createCheckboxForm(control.layout.checkboxOptions as CheckboxOptionsInterface[]);
                 }
             }
         });
@@ -77,7 +78,7 @@ export class Preview{
         this.dynamicForm.reset();
     }
 
-    getValidationError(control:FormcontrolInterface):string{
+    getValidationError(control:FormcontrolInterface | LayoutFormcontrolInterface):string{
         const myFormControl = this.dynamicForm.get(control.name);
         let errorMessage:string=''
         control.validators?.forEach((val)=>{

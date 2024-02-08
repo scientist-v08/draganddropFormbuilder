@@ -51,6 +51,21 @@ export class TextareaPopupComponent{
     }
 
     onSubmit():void{
+        if(this.data.rowId === undefined){
+            this.withoutLayoutFormCreation();
+        }
+        else if(this.data.rowId !== undefined){
+            this.withLayoutFormCreation();
+        }
+    }
+
+    enableSubmitButton():void{
+        if(this.label!==""){
+            this.enableSubmit=true;
+        }
+    }
+
+    withoutLayoutFormCreation():void{
         let field: FormcontrolInterface;
         if(this.validatorSelector===false){
             field = {
@@ -103,9 +118,75 @@ export class TextareaPopupComponent{
         this.dialogRef.close(1);
     }
 
-    enableSubmitButton():void{
-        if(this.label!==""){
-            this.enableSubmit=true;
+    withLayoutFormCreation():void{
+        let field: FormcontrolInterface;
+        const index : number = this.jsonStorage.getAllFields().findIndex(
+            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
+        );
+        if(this.validatorSelector===false){
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'placeholder':this.placeholder,
+                    'type':'textarea'
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
         }
+        else if(this.validatorSelector===true){
+            let validations:ValidatorInterface[]=[];
+            for(let i=0;i<this.numberOfValidation;i++){
+                if(this.validators[i].validationName==='required'){
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:"This is a required field"
+                    });
+                }
+                else if(this.validators[i].validationName==='maxlength'){
+                    const messageString : string = "Please enter less than "+this.validators[i].maxLength as string + " characters";
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:messageString,
+                        maxLength:this.validators[i].maxLength
+                    });
+                }
+                else if(this.validators[i].validationName==='minlength'){
+                    const messageString : string = "Please enter more than "+this.validators[i].minLength as string + " characters";
+                    validations.push({
+                        validationName:this.validators[i].validationName,
+                        message:messageString,
+                        minLength:this.validators[i].minLength
+                    });
+                }
+            }
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'placeholder':this.placeholder,
+                    'type':'textarea',
+                    'validators': validations
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
+        }
+        this.dialogRef.close(1);
     }
 }

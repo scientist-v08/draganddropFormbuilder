@@ -46,6 +46,15 @@ export class RadioButtonCreationPopup{
     }
 
     onSubmit():void{
+        if(this.data.rowId === undefined){
+            this.withoutLayoutFormCreation();
+        }
+        else if(this.data.rowId !== undefined){
+            this.withLayoutFormCreation();
+        }
+    }
+
+    withoutLayoutFormCreation():void{
         let field: FormcontrolInterface;
         if(this.requiredField===false){
             field = {
@@ -75,6 +84,61 @@ export class RadioButtonCreationPopup{
                 'type':'radio'
             }
             this.jsonStorage.fieldCreator(field);
+        }
+        this.dialogRef.close(1);
+    }
+
+    withLayoutFormCreation():void{
+        const index : number = this.jsonStorage.getAllFields().findIndex(
+            item => item.rowId === this.data.rowId && item.layout?.columnNumber === this.data.columnId
+        );
+        let field: FormcontrolInterface;
+        if(this.requiredField===false){
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'rowId':this.data.rowId,
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'radioOptions':this.optionsEntry,
+                    'placeholder':"",
+                    'type':'radio'
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
+        }
+        else if(this.requiredField===true){
+            let validations:ValidatorInterface[]=[{
+                validationName:"required",
+                message:"This is a required field"
+            }];
+            field = {
+                'class':this.class,
+                'label':"",
+                'name':"",
+                'value':"",
+                'placeholder':"",
+                'type':'layout',
+                'rowId':this.data.rowId,
+                'layout':{
+                    'columnNumber':this.data.columnId as number,
+                    'label':this.label,
+                    'name':this.nameGenerator.transformString(this.label),
+                    'value':this.value,
+                    'radioOptions':this.optionsEntry,
+                    'placeholder':"",
+                    'type':'radio',
+                    'validators': validations,
+                }
+            }
+            this.jsonStorage.setFieldByIndex(field,index);
         }
         this.dialogRef.close(1);
     }

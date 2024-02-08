@@ -189,6 +189,5 @@ export class DropZoneComponent{
 
     dropZoneDisable(event:boolean):void{
         this.enableDropZone=event;
-        console.log(this.enableDropZone);
     }
 }

@@ -50,7 +50,7 @@ export class LayoutDropzoneComponent{
                     if(result===1){
                         this.enableExternalDropZone();
                         let itemToDisplay = this.formJsonFormat.getAllFields();
-                        this.droppedItem[0] = itemToDisplay.find(item => item.rowId === this.rowNumber) as FormcontrolInterface
+                        this.droppedItem[0] = itemToDisplay.find(item => item.rowId === this.rowNumber && item.layout?.columnNumber===this.columnNumber) as FormcontrolInterface
                     }
                 });
         }
