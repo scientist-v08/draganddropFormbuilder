@@ -12,6 +12,7 @@ import { InputCreationPopupComponent } from "../input-field-creation-popup/input
 import { FormJsonCreator } from "../services/formjsoncreator.service";
 import { FormcontrolInterface } from "../interfaces/formcontrol.interface";
 import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
+import { DropzoneManagementService } from "../services/dropzonemanagement.service";
 
 @Component({
     standalone:true,
@@ -23,20 +24,20 @@ import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.inte
 export class LayoutDropzoneComponent implements OnInit{
     dialog = inject(MatDialog);
     formJsonFormat = inject(FormJsonCreator);
+    dropzoneManager = inject(DropzoneManagementService);
 
     dropItem:string[]=[];
     droppedItem:LayoutFormcontrolInterface[]=[];
     @Input() layoutClass!:string;
     @Input() rowNumber!:number;
     @Input() columnNumber!:number;
-    @Output() externalDropZoneDisable = new EventEmitter<boolean>();
 
     dragOver(event:DragEvent):void{
         event.preventDefault();
     }
     onDrop(event:DragEvent):void{
         event.preventDefault();
-        this.externalDropZoneDisable.emit(false);
+        this.dropzoneManager.dropzoneManager(false);
         const data = event.dataTransfer?.getData("text/plain");
         const { label } = JSON.parse(data as string);
         this.dropItem.push(label);
@@ -124,7 +125,7 @@ export class LayoutDropzoneComponent implements OnInit{
         timer(1000)
             .pipe(take(1))
             .subscribe(()=>{
-                this.externalDropZoneDisable.emit(true);
+              this.dropzoneManager.dropzoneManager(true);
             });
     }
 

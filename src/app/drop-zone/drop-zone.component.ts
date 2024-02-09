@@ -15,6 +15,7 @@ import { LayoutCreationPopupComponent } from "../layout-creation-popup/layout-cr
 import { LayoutCreationInterface } from "../interfaces/layoutcreation.interface";
 import { LayoutDropzoneComponent } from "../layout-drop-zone/layout-drop-zone.component";
 import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
+import { DropzoneManagementService } from "../services/dropzonemanagement.service";
 
 @Component({
     standalone:true,
@@ -26,19 +27,21 @@ import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.inte
 export class DropZoneComponent{
     dialog = inject(MatDialog);
     formJsonFormat = inject(FormJsonCreator);
+    dropzoneManager = inject(DropzoneManagementService);
 
     dropItem:string[]=[];
     droppedItem:FormcontrolInterface[]=[];
     class:string="col-md-12";
     rowNumber:number=-1;
-    enableDropZone:boolean = true;
 
     dragOver(event:DragEvent):void{
         event.preventDefault();
     }
     onDrop(event:DragEvent):void{
         event.preventDefault();
-        if(this.enableDropZone===true){
+        this.dropzoneManager.observer$.subscribe(e=>{
+          console.log(e);
+          if(e===true){
             const data = event.dataTransfer?.getData("text/plain");
             const { label } = JSON.parse(data as string);
             this.dropItem.push(label);
@@ -158,11 +161,7 @@ export class DropZoneComponent{
                         this.formJsonFormat.fieldCreator(droppedField);
                         this.droppedItem=this.formJsonFormat.getAllFields();
                     });
-            }
-        }
-    }
-
-    dropZoneDisable(event:boolean):void{
-        this.enableDropZone=event;
+            }}
+        })
     }
 }
