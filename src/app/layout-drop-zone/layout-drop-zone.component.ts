@@ -114,14 +114,14 @@ export class LayoutDropzoneComponent implements OnInit{
                 .pipe(take(1))
                 .subscribe((result:number)=>{
                     if(result===1){
-                        this.enableExternalDropZone(); 
+                        this.enableExternalDropZone();
                     }
                 });
         }
 
     }
     enableExternalDropZone():void{
-        timer(500)
+        timer(1000)
             .pipe(take(1))
             .subscribe(()=>{
                 this.externalDropZoneDisable.emit(true);
