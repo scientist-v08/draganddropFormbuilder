@@ -13,7 +13,6 @@ import { CheckboxCreationPopup } from "../checkbox-creation-popup/checkbox-creat
 import { FileuploadCreationPopup } from "../file-upload-creation-popup/file-upload-creation.component";
 import { LayoutCreationPopupComponent } from "../layout-creation-popup/layout-creation-popup.component";
 import { LayoutCreationInterface } from "../interfaces/layoutcreation.interface";
-import { LayoutTrackerInterface } from "../interfaces/layouttracker.interface";
 import { LayoutDropzoneComponent } from "../layout-drop-zone/layout-drop-zone.component";
 import { LayoutFormcontrolInterface } from "../interfaces/layoutformcontrol.interface";
 
@@ -32,7 +31,6 @@ export class DropZoneComponent{
     droppedItem:FormcontrolInterface[]=[];
     class:string="col-md-12";
     rowNumber:number=-1;
-	layoutTracker:LayoutTrackerInterface[]=[];
     enableDropZone:boolean = true;
 
     dragOver(event:DragEvent):void{
@@ -137,7 +135,6 @@ export class DropZoneComponent{
                     .subscribe((result:LayoutCreationInterface)=>{
                         this.rowNumber++;
                         let class_ = "col-"+result.size+"-"+result.columnSize;
-                        this.layoutCreationFunc(this.rowNumber,class_,result.numberOfFields);
                         let droppedLayoutItem:LayoutFormcontrolInterface[]=[];
                         for(let i=0;i<result.numberOfFields;i++){
                             let droppedLayoutItemIterator : LayoutFormcontrolInterface = {
@@ -145,7 +142,7 @@ export class DropZoneComponent{
                                 label:"",
                                 placeholder:"",
                                 columnNumber: i,
-                                type:""    
+                                type:""
                             }
                             droppedLayoutItem.push(droppedLayoutItemIterator);
                         }
@@ -163,32 +160,6 @@ export class DropZoneComponent{
                     });
             }
         }
-    }
-
-	layoutCreationFunc(id_:number,class_:string,feilds:number):void{
-        const index = this.layoutTracker.findIndex(item => item.id === id_);
-        let classArray:string[]=[];
-        for (let i = 0; i < feilds; i++) {
-            classArray[i] = class_;
-        }
-        const newLayout : LayoutTrackerInterface = {
-            id:id_,
-            layoutClass: classArray
-        }
-        if(index === -1){
-            this.layoutTracker.push(newLayout);
-        }
-        else{
-            this.layoutTracker[index]=newLayout;
-        }
-    }
-
-    layoutToBeUsed(row:number):string[]{
-        let requiredLayout : LayoutTrackerInterface = this.layoutTracker.find(item => item.id === row) as LayoutTrackerInterface;
-        if(requiredLayout!==undefined){
-            return requiredLayout.layoutClass;
-        }
-        else return [];
     }
 
     dropZoneDisable(event:boolean):void{
