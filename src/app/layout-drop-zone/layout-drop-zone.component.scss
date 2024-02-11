@@ -1,4 +1,9 @@
-.drop-zone {
+.drop-zone-inactive {
     border: 2px dashed #ccc;
+    padding: 2%;
+}
+
+.drop-zone-active {
+    border: 5px dashed #000;
     padding: 2%;
 }

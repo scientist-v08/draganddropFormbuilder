@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { take, timer } from "rxjs";
+import { take } from "rxjs";
 import { FileuploadCreationPopup } from "../file-upload-creation-popup/file-upload-creation.component";
 import { CheckboxCreationPopup } from "../checkbox-creation-popup/checkbox-creation-popup.component";
 import { RadioButtonCreationPopup } from "../radio-button-creation-popup/radio-button-creation-popup.component";
@@ -31,9 +31,14 @@ export class LayoutDropzoneComponent implements OnInit{
     @Input() layoutClass!:string;
     @Input() rowNumber!:number;
     @Input() columnNumber!:number;
+    isDragOver:boolean = false;
 
     dragOver(event:DragEvent):void{
         event.preventDefault();
+        this.isDragOver = event.type === 'dragover';
+    }
+    onDragLeave() {
+        this.isDragOver = false;
     }
     onDrop(event:DragEvent):void{
         event.preventDefault();
@@ -133,4 +138,11 @@ export class LayoutDropzoneComponent implements OnInit{
             this.droppedItem.push(obatinedLayoutItem);
         }
     }
+
+    classSelector():string{
+      if(this.isDragOver){
+        return "drop-zone-active";
+      }
+      return "drop-zone-inactive";
+  }
 }

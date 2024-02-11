@@ -1,6 +1,7 @@
 <div
-    class="drop-zone"
+    [ngClass]="classSelector()"
     (dragover)="dragOver($event)"
+    (dragleave)="onDragLeave()"
     (drop)="onDrop($event)"
 >
     <ng-container *ngIf="droppedItem.length === 0">Drop Zone</ng-container>
