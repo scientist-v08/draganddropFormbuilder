@@ -39,9 +39,8 @@ export class DropZoneComponent{
     }
     onDrop(event:DragEvent):void{
         event.preventDefault();
-        this.dropzoneManager.observer$.subscribe(e=>{
-          console.log(e);
-          if(e===true){
+        console.log(this.dropzoneManager.getExternalDropzoneEnable());
+        if(this.dropzoneManager.getExternalDropzoneEnable()===true){
             const data = event.dataTransfer?.getData("text/plain");
             const { label } = JSON.parse(data as string);
             this.dropItem.push(label);
@@ -161,7 +160,8 @@ export class DropZoneComponent{
                         this.formJsonFormat.fieldCreator(droppedField);
                         this.droppedItem=this.formJsonFormat.getAllFields();
                     });
-            }}
-        })
+            }
+        }
+        
     }
 }

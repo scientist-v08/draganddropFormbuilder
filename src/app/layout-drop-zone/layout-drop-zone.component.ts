@@ -37,7 +37,7 @@ export class LayoutDropzoneComponent implements OnInit{
     }
     onDrop(event:DragEvent):void{
         event.preventDefault();
-        this.dropzoneManager.dropzoneManager(false);
+        this.dropzoneManager.setExternalDropzoneEnable(false);
         const data = event.dataTransfer?.getData("text/plain");
         const { label } = JSON.parse(data as string);
         this.dropItem.push(label);
@@ -122,11 +122,7 @@ export class LayoutDropzoneComponent implements OnInit{
 
     }
     enableExternalDropZone():void{
-        timer(1000)
-            .pipe(take(1))
-            .subscribe(()=>{
-              this.dropzoneManager.dropzoneManager(true);
-            });
+        this.dropzoneManager.setExternalDropzoneEnable(true);
     }
 
     ngOnInit():void{
