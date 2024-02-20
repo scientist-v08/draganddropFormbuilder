@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "angular.ng-template",
-    "nrwl.angular-console"
+    "angular.ng-template"
   ]
 }

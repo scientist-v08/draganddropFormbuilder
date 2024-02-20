@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { InputCreationPopupComponent } from "../input-field-creation-popup/input-field-creation-popup.component";
@@ -24,7 +24,8 @@ import { DropzoneManagementService } from "../services/dropzonemanagement.servic
     templateUrl:"./drop-zone.component.html",
     styleUrls:["./drop-zone.component.scss"]
 })
-export class DropZoneComponent{
+export class DropZoneComponent implements OnInit{
+
     dialog = inject(MatDialog);
     formJsonFormat = inject(FormJsonCreator);
     dropzoneManager = inject(DropzoneManagementService);
@@ -34,9 +35,14 @@ export class DropZoneComponent{
     class:string="col-md-12";
     rowNumber:number=-1;
 
+    public ngOnInit():void{
+        this.droppedItem=this.formJsonFormat.getAllFields();
+    }
+
     dragOver(event:DragEvent):void{
         event.preventDefault();
     }
+
     onDrop(event:DragEvent):void{
         event.preventDefault();
         console.log(this.dropzoneManager.getExternalDropzoneEnable());
