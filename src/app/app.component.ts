@@ -20,7 +20,6 @@ import { FormcontrolInterface } from './interfaces/formcontrol.interface';
   .drop-zone {
     border: 2px dashed #ccc;
     padding: 2%;
-    // margin-top: 20px;
   }
   `]
 })
